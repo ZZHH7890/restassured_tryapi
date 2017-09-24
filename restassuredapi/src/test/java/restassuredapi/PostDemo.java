@@ -16,7 +16,7 @@ public class PostDemo {
 	public void postJson() {
 		String apiUrl = "http://release.thy360.com/v2/regist/code";
 		Response response = given().contentType("application/json")
-				.body("{\"phone\": \"13714672776\",\"code\":\"1234\",\"wxAuthCode\":\"\",\"introducerCode\":\"\"}")
+				.body("{\"phone\": \"13714672776\",\"code\":\"1234\",\"introducerCode\":\"\"}")
 				.post(apiUrl);
 		System.out.println(response.asString());
 		response.getBody().prettyPrint();
