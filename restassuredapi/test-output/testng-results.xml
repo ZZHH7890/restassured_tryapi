@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="1031" started-at="2017-09-24T12:58:49Z" finished-at="2017-09-24T12:58:50Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="1031" started-at="2017-09-24T12:58:49Z" finished-at="2017-09-24T12:58:50Z">
+      <class name="restassuredapi.GetDemo">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:restassuredapi.GetDemo@29ee9faa]" name="beforeClass" is-config="true" duration-ms="60" started-at="2017-09-24T20:58:49Z" finished-at="2017-09-24T20:58:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="test()[pri:0, instance:restassuredapi.GetDemo@29ee9faa]" name="test" duration-ms="955" started-at="2017-09-24T20:58:49Z" finished-at="2017-09-24T20:58:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:restassuredapi.GetDemo@29ee9faa]" name="afterClass" is-config="true" duration-ms="1" started-at="2017-09-24T20:58:50Z" finished-at="2017-09-24T20:58:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- restassuredapi.GetDemo -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
