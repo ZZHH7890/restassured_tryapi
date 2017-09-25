@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 public class NewTest {
 	@Test
 	public void test() throws IOException {
-		RestAssuredMethods.postMethod(Config.API_LOGIN);
+		System.out.println(Config.getToken());
 	}
 
 	@BeforeClass

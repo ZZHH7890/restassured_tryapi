@@ -18,8 +18,12 @@ public class PostDemo {
 		Response response = given().contentType("application/json")
 				.body("{\"phone\": \"13714672776\",\"code\":\"1234\",\"introducerCode\":\"\"}")
 				.post(apiUrl);
+		String token = response.path("token");
+		String msString = response.path("msg");
 		System.out.println(response.asString());
 		response.getBody().prettyPrint();
+		System.out.println(token);
+		System.out.println(msString);
 	}
 
 	@BeforeClass
