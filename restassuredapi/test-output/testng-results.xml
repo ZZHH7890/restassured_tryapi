@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1181" started-at="2017-09-24T14:00:24Z" finished-at="2017-09-24T14:00:25Z">
+  <suite name="Default suite" duration-ms="2138" started-at="2017-09-25T08:41:23Z" finished-at="2017-09-25T08:41:25Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1181" started-at="2017-09-24T14:00:24Z" finished-at="2017-09-24T14:00:25Z">
-      <class name="restassuredapi.PostDemo">
-        <test-method status="PASS" signature="beforeClass()[pri:0, instance:restassuredapi.PostDemo@29ee9faa]" name="beforeClass" is-config="true" duration-ms="70" started-at="2017-09-24T22:00:24Z" finished-at="2017-09-24T22:00:24Z">
+    <test name="Default test" duration-ms="2138" started-at="2017-09-25T08:41:23Z" finished-at="2017-09-25T08:41:25Z">
+      <class name="restassuredapi.NewTest">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:restassuredapi.NewTest@29ee9faa]" name="beforeClass" is-config="true" duration-ms="60" started-at="2017-09-25T16:41:23Z" finished-at="2017-09-25T16:41:23Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method status="PASS" signature="postJson()[pri:0, instance:restassuredapi.PostDemo@29ee9faa]" name="postJson" duration-ms="1111" started-at="2017-09-24T22:00:24Z" finished-at="2017-09-24T22:00:25Z">
+        <test-method status="PASS" signature="test()[pri:0, instance:restassuredapi.NewTest@29ee9faa]" name="test" duration-ms="2062" started-at="2017-09-25T16:41:23Z" finished-at="2017-09-25T16:41:25Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- postJson -->
-        <test-method status="PASS" signature="afterClass()[pri:0, instance:restassuredapi.PostDemo@29ee9faa]" name="afterClass" is-config="true" duration-ms="0" started-at="2017-09-24T22:00:25Z" finished-at="2017-09-24T22:00:25Z">
+        </test-method> <!-- test -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:restassuredapi.NewTest@29ee9faa]" name="afterClass" is-config="true" duration-ms="0" started-at="2017-09-25T16:41:25Z" finished-at="2017-09-25T16:41:25Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-      </class> <!-- restassuredapi.PostDemo -->
+      </class> <!-- restassuredapi.NewTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

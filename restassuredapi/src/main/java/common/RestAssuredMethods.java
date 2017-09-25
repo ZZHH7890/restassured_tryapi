@@ -13,15 +13,25 @@ import java.util.Map;
 import io.restassured.response.Response;
 
 public class RestAssuredMethods {
-	public static Response postMethod(Map<String, String> configMap, Map<String, String> apiMap) throws IOException {
+
+	public static Response postMethod(int apiRow) throws IOException {
 		Response response = null;
-		configMap = ReadExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_API_SHEET, Config.TEST_ENV);
+		Map<String, String> configMap = ReadExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
+				Config.EXCEL_CONFIG_SHEET, Config.TEST_ENV);
+		Map<String, String> apiMap = ReadExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_API_SHEET,
+				apiRow);
 		if ("application/json".contentEquals(apiMap.get("contentType"))) {
 			response = given().contentType("application/json")
+					.header("token", apiMap.get("token"))
+					.header("region", configMap.get("region"))
 					.body(apiMap.get("postData"))
 					.post(configMap.get("host") + apiMap.get("api"));
 		}
+		if (response != null) {
+			Log.info("测试接口返回：" + response.getBody().prettyPrint());
+		} else {
+			Log.info("接口" + apiMap.get("api") + "请求失败");
+		}
 		return response;
 	}
-
 }

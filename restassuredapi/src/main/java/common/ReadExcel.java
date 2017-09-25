@@ -20,7 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcel {
 	// 获取二维数组数据提供给测试数据提供类pro
-	public static Object[][] getTestData(String excelPath, String excelName, String excelConfigSheet)
+	public static Object[][] getTestDataMap(String excelPath, String excelName, String excelConfigSheet)
 			throws IOException {
 		Log.info("=========================表格测试数据读取开始=========================");
 		File file = new File(excelPath + "\\" + excelName);
