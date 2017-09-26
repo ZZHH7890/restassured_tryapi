@@ -55,6 +55,7 @@ public class ZzkgApiCases {
 		Log.startTestCase("测试开始！");
 		try {
 			Config.clearLog();
+			Config.initToken();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.info("初始化环境未完成！");
@@ -66,6 +67,7 @@ public class ZzkgApiCases {
 		Log.endTestCase("测试结束！");
 		try {
 			Config.clearCart();
+			Config.clearToken();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.info("清理环境未完成！");

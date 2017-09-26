@@ -13,6 +13,11 @@ import java.util.Map;
 import io.restassured.response.Response;
 
 public class RestAssuredMethods {
+	
+	public static Response httpRequest(String postData, int apiRow) {
+		
+	}
+	
 
 	public static Response postMethod(String postData, int apiRow) throws IOException {
 		Log.startTestCase("开始调用postMethod");
@@ -27,7 +32,7 @@ public class RestAssuredMethods {
 					.post(configMap.get("host") + apiMap.get("api"));
 		}
 		if (response != null) {
-			Log.info("测试接口返回：" + response.getBody().prettyPrint());
+			Log.info("测试接口返回：" + response.asString());
 		} else {
 			Log.info("接口" + apiMap.get("api") + "请求失败");
 		}
@@ -45,7 +50,7 @@ public class RestAssuredMethods {
 		response = given().contentType("application/json").header("token", apiMap.get("token"))
 				.header("region", configMap.get("region")).delete(configMap.get("host") + apiMap.get("api"));
 		if (response != null) {
-			Log.info("测试接口返回：" + response.getBody().prettyPrint());
+			Log.info("测试接口返回：" + response.asString());
 		} else {
 			Log.info("接口" + apiMap.get("api") + "请求失败");
 		}

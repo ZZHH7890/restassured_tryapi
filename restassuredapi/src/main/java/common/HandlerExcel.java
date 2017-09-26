@@ -23,50 +23,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class HandlerExcel {
 
-	public static void test(String excelPath, String excelName, String excelConfigSheet, String data) {
-		Log.info("=========================表格测试数据写入开始=========================");
-		File file = new File(excelPath + "\\" + excelName);
-		Log.info("测试数据表格：" + file.toString());
-		Log.info("读取sheet: " + excelConfigSheet);
-		try {
-			FileInputStream inputStream = new FileInputStream(file);
-			Workbook workbook = new XSSFWorkbook(inputStream);
-			Sheet sheet = workbook.getSheet(excelConfigSheet);
-			int rowcount = sheet.getLastRowNum() - sheet.getFirstRowNum() + 1;
-
-			// 获取表格表头信息
-			Row headerrow = sheet.getRow(0);
-			String headerrowfields[] = new String[headerrow.getLastCellNum()];
-			for (int k = 0; k < headerrow.getLastCellNum(); k++) {
-				headerrowfields[k] = headerrow.getCell(k).getStringCellValue();
-				Log.info(headerrowfields[k]);
-			}
-			// 获取表格数据信息
-			for (int i = 1; i < rowcount; i++) {
-				Row row = sheet.getRow(i);
-				for (int j = 0; j < row.getLastCellNum(); j++) {
-					if (row.getCell(j) == null) {
-						System.out.println("1234");
-						
-					}
-						row.getCell(j).setCellValue(data);
-	
-				}
-			}
-			FileOutputStream outputStream = new FileOutputStream(file);
-			workbook.write(outputStream);
-			outputStream.close();
-			inputStream.close();
-			workbook.close();
-		} catch (Exception e) {
-			String failString = "数据写入表格失败！！";
-			Log.info(failString);
-			e.printStackTrace();
-		}
-
-		Log.info("=========================表格测试数据写入结束=========================");
-	}
-
 	// 向表格单元格中写入数据
 	public static void setDataToCell(String excelPath, String excelName, String excelConfigSheet, String data) {
 		Log.info("=========================表格测试数据写入开始=========================");
@@ -78,20 +34,18 @@ public class HandlerExcel {
 			Workbook workbook = new XSSFWorkbook(inputStream);
 			Sheet sheet = workbook.getSheet(excelConfigSheet);
 			int rowcount = sheet.getLastRowNum() - sheet.getFirstRowNum() + 1;
-
 			// 获取表格表头信息
 			Row headerrow = sheet.getRow(0);
 			String headerrowfields[] = new String[headerrow.getLastCellNum()];
 			for (int k = 0; k < headerrow.getLastCellNum(); k++) {
 				headerrowfields[k] = headerrow.getCell(k).getStringCellValue();
-				Log.info(headerrowfields[k]);
 			}
-			// 获取表格数据信息
+			// 循环查找单元格并且插入数据
 			for (int i = 1; i < rowcount; i++) {
 				Row row = sheet.getRow(i);
 				for (int j = 0; j < row.getLastCellNum(); j++) {
 					if ("token".equals(headerrowfields[j])) {
-						row.getCell(j).setCellValue(data);
+						row.createCell(j).setCellValue(data);
 					}
 				}
 			}
@@ -105,7 +59,6 @@ public class HandlerExcel {
 			Log.info(failString);
 			e.printStackTrace();
 		}
-
 		Log.info("=========================表格测试数据写入结束=========================");
 	}
 
@@ -129,6 +82,7 @@ public class HandlerExcel {
 		}
 		// 获取表格数据信息
 		for (int i = 1; i < rowcount; i++) {
+			Log.info("--------------------第" + i + "组测试数据" + "--------------------");
 			Row row = sheet.getRow(i);
 			String fields[] = new String[row.getLastCellNum()];
 			for (int j = 0; j < row.getLastCellNum(); j++) {
@@ -137,7 +91,6 @@ public class HandlerExcel {
 					Log.info(headerrowfields[j] + "：" + fields[j]);
 				}
 			}
-			Log.info("--------------------第" + i + "组测试数据" + "--------------------");
 			records.add(fields);
 		}
 		Object[][] results = new Object[records.size()][];

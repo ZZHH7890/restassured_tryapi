@@ -40,7 +40,7 @@ public class Config {
 	public static final String DATA_ADDRESS_SHEET = "address";
 	// excel表格添加商品到购物车接口测试数据所在sheet
 	public static final String DATA_BUY_SHEET = "buyprocess";
-
+	// 日志存放的路径
 	public static final String LOG_FILE_PATH = "C:\\Users\\Administrator\\eclipse-workspace\\restassured_tryapi\\restassuredapi\\log\\logfile.log";
 
 	public static String getToken() {
@@ -56,6 +56,24 @@ public class Config {
 			String failString = "获取用户token执行失败！！";
 			Log.info(failString);
 			return failString;
+		}
+	}
+	//用户token写入excel
+	public static void initToken() {
+		try {
+			HandlerExcel.setDataToCell(EXCEL_PATH, EXCEL_NAME, EXCEL_API_SHEET, getToken());
+		} catch (Exception e) {
+			String failString = "用户token写入excel失败！";
+			Log.info(failString);
+		}
+	}
+	//清空用户token
+	public static void clearToken() {
+		try {
+			HandlerExcel.setDataToCell(EXCEL_PATH, EXCEL_NAME, EXCEL_API_SHEET, "");
+		} catch (Exception e) {
+			String failString = "清空用户token失败！";
+			Log.info(failString);
 		}
 	}
 

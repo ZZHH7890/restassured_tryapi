@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 public class NewTest {
 	@Test
 	public void test() throws IOException {
-		HandlerExcel.test(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_TEST_SHEET, "UUUU");
+		HandlerExcel.setDataToCell(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_TEST_SHEET, "PPPPPP");
 	}
 
 	@BeforeClass
