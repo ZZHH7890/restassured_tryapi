@@ -3,6 +3,7 @@ package restassuredapi;
 import org.testng.annotations.Test;
 
 import common.Config;
+import common.HandlerExcel;
 import common.RestAssuredMethods;
 import org.testng.annotations.BeforeClass;
 
@@ -13,7 +14,7 @@ import org.testng.annotations.AfterClass;
 public class NewTest {
 	@Test
 	public void test() throws IOException {
-		System.out.println(Config.getToken());
+		HandlerExcel.test(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_TEST_SHEET, "UUUU");
 	}
 
 	@BeforeClass

@@ -17,9 +17,9 @@ public class RestAssuredMethods {
 	public static Response postMethod(String postData, int apiRow) throws IOException {
 		Log.startTestCase("开始调用postMethod");
 		Response response = null;
-		Map<String, String> configMap = ReadExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
+		Map<String, String> configMap = HandlerExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
 				Config.EXCEL_CONFIG_SHEET, Config.TEST_ENV);
-		Map<String, String> apiMap = ReadExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_API_SHEET,
+		Map<String, String> apiMap = HandlerExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_API_SHEET,
 				apiRow);
 		if ("application/json".contentEquals(apiMap.get("contentType"))) {
 			response = given().contentType("application/json").header("token", apiMap.get("token"))
@@ -38,11 +38,10 @@ public class RestAssuredMethods {
 	public static Response deleteMethod(int apiRow) throws IOException {
 		Log.startTestCase("开始调用deleteMethod");
 		Response response = null;
-		Map<String, String> configMap = ReadExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
+		Map<String, String> configMap = HandlerExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
 				Config.EXCEL_CONFIG_SHEET, Config.TEST_ENV);
-		Map<String, String> apiMap = ReadExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_API_SHEET,
+		Map<String, String> apiMap = HandlerExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_API_SHEET,
 				apiRow);
-
 		response = given().contentType("application/json").header("token", apiMap.get("token"))
 				.header("region", configMap.get("region")).delete(configMap.get("host") + apiMap.get("api"));
 		if (response != null) {

@@ -27,6 +27,9 @@ public class Config {
 	public static final String EXCEL_PATH = "C:\\Users\\Administrator\\eclipse-workspace\\restassured_tryapi\\restassuredapi\\ExcelForData";
 	// excel表格名字
 	public static final String EXCEL_NAME = "testData.xlsx";
+
+	// excel表格config信息所在sheet
+	public static final String EXCEL_TEST_SHEET = "test";
 	// excel表格config信息所在sheet
 	public static final String EXCEL_CONFIG_SHEET = "config";
 	// excel表格接口信息所在sheet
@@ -38,13 +41,13 @@ public class Config {
 	// excel表格添加商品到购物车接口测试数据所在sheet
 	public static final String DATA_BUY_SHEET = "buyprocess";
 
-	public static final String LOG_FILE_PATH = "C:\\Users\\Administrator\\eclipse-workspace\\api_automation\\api\\log\\logfile.log";
+	public static final String LOG_FILE_PATH = "C:\\Users\\Administrator\\eclipse-workspace\\restassured_tryapi\\restassuredapi\\log\\logfile.log";
 
 	public static String getToken() {
 		try {
-			Map<String, String> configMap = ReadExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
+			Map<String, String> configMap = HandlerExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
 					Config.EXCEL_CONFIG_SHEET, Config.TEST_ENV);
-			Map<String, String> apiMap = ReadExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
+			Map<String, String> apiMap = HandlerExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
 					Config.EXCEL_API_SHEET, Config.API_LOGIN);
 			Response response = given().contentType("application/json").body(configMap.get("loginData"))
 					.post(configMap.get("host") + apiMap.get("api"));
@@ -64,7 +67,6 @@ public class Config {
 			String failString = "清空购物车失败！";
 			Log.info(failString);
 		}
-
 	}
 
 	// 清空日志
