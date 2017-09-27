@@ -38,7 +38,8 @@ public class RestAssuredMethods {
 			break;
 		case "delete":
 			response = given().contentType("application/json").header("token", apiMap.get("token"))
-					.header("region", configMap.get("region")).delete(configMap.get("host") + apiMap.get("api"));
+					.header("region", configMap.get("region"))
+					.delete(configMap.get("host") + apiMap.get("api") + postData[0]);
 			break;
 		default:
 			Log.info("请求方法无法识别, 请求失败");

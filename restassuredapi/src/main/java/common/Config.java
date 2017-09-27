@@ -3,7 +3,11 @@ package common;
 import static io.restassured.RestAssured.given;
 
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
+
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 /**
@@ -23,6 +27,10 @@ public class Config {
 	public static final int API_ADD_ADDRESS = 5;
 	// 添加商品到购物车接口信息在表格第12行
 	public static final int API_BUY = 12;
+	// 获取地址列表接口信息在表格第7行
+	public static final int API_GET_ADDRESS = 7;
+	// 删除地址列表接口信息在表格第6行
+	public static final int API_DELETE_ADDRESS = 6;
 	// excel表格路径
 	public static final String EXCEL_PATH = "C:\\Users\\Administrator\\eclipse-workspace\\restassured_tryapi\\restassuredapi\\ExcelForData";
 	// excel表格名字
@@ -43,6 +51,7 @@ public class Config {
 	// 日志存放的路径
 	public static final String LOG_FILE_PATH = "C:\\Users\\Administrator\\eclipse-workspace\\restassured_tryapi\\restassuredapi\\log\\logfile.log";
 
+	// 生成用户token
 	public static String getToken() {
 		try {
 			Map<String, String> configMap = HandlerExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
@@ -68,6 +77,22 @@ public class Config {
 		}
 	}
 
+	// 初始化收货地址
+	public static String initAddress() {
+		try {
+			Map<String, String> configMap = HandlerExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
+					Config.EXCEL_CONFIG_SHEET, Config.TEST_ENV);
+			Response response = RestAssuredMethods.httpRequest(API_ADD_ADDRESS, configMap.get("initAddress"));
+			String succString = "初始化收货地址成功！！";
+			Log.info(succString + response.asString());
+			return succString;
+		} catch (Exception e) {
+			String failString = "获取用户token执行失败！！";
+			Log.info(failString);
+			return failString;
+		}
+	}
+
 	// 清空用户token
 	public static void clearToken() {
 		try {
@@ -83,8 +108,31 @@ public class Config {
 	// 清空购物车
 	public static void clearCart() {
 		try {
-			Response response = RestAssuredMethods.httpRequest(Config.API_CLEAR_CART);
-			Log.info("清空购物车成功：" + response.asString());
+			RestAssuredMethods.httpRequest(Config.API_CLEAR_CART);
+			Log.info("清空购物车成功：");
+		} catch (Exception e) {
+			String failString = "清空购物车失败！";
+			Log.info(failString);
+		}
+	}
+
+	// 清空用户地址
+	public static void clearAddress() {
+		try {
+			Response response = RestAssuredMethods.httpRequest(Config.API_GET_ADDRESS);
+			JsonPath jsonPath = new JsonPath(response.asString());
+			ArrayList<Integer> addressIds = jsonPath.get("id");
+			if (addressIds.size() != 0) {
+				Iterator<Integer> iterator = addressIds.iterator();
+				while (iterator.hasNext()) {
+					String string = String.valueOf(iterator.next());
+					RestAssuredMethods.httpRequest(Config.API_DELETE_ADDRESS, string);
+				}
+				Log.info("清空用户地址成功");
+			} else {
+				Log.info("用户没有地址，不需要清空地址操作!");
+			}
+
 		} catch (Exception e) {
 			String failString = "清空购物车失败！";
 			Log.info(failString);
@@ -92,7 +140,7 @@ public class Config {
 	}
 
 	// 清空日志
-	public static void clearLog() {
+	public static void initLog() {
 		try {
 			FileWriter fw = new FileWriter(LOG_FILE_PATH, false);
 			fw.write("");

@@ -10,13 +10,13 @@
 				<include name="P2" />
 			</define>
 			<run>	
-				<include name="P2" />
+				<include name="P1" />
 				<include name="clear.env" />
 				<include name="init.env" />
 			</run>
 		</groups>
 		<classes>
-			<class name="com.zzkg.apicases.ZzkgApiCases" />
+			<class name="apitestcases.ZzkgApiCases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
