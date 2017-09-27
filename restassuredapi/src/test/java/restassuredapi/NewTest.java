@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import common.Config;
 import common.HandlerExcel;
 import common.RestAssuredMethods;
+import io.restassured.response.Response;
+
 import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
@@ -14,7 +16,10 @@ import org.testng.annotations.AfterClass;
 public class NewTest {
 	@Test
 	public void test() throws IOException {
-		HandlerExcel.setDataToCell(Config.EXCEL_PATH, Config.EXCEL_NAME, Config.EXCEL_TEST_SHEET, "PPPPPP");
+		System.out.println(Config.getToken());
+//		Response response = RestAssuredMethods.httpRequest(Config.API_CLEAR_CART);
+//		Response response = RestAssuredMethods.httpRequest(Config.API_BUY, "{\"dealId\":991824,\"odLabelId\":\"-1\",\"limitFlag\":false,\"selected\":false,\"specId\":924116,\"dealCount\":1}");
+//		response.getBody().prettyPrint();
 	}
 
 	@BeforeClass

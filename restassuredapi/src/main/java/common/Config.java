@@ -47,10 +47,7 @@ public class Config {
 		try {
 			Map<String, String> configMap = HandlerExcel.getConfigMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
 					Config.EXCEL_CONFIG_SHEET, Config.TEST_ENV);
-			Map<String, String> apiMap = HandlerExcel.getApiMap(Config.EXCEL_PATH, Config.EXCEL_NAME,
-					Config.EXCEL_API_SHEET, Config.API_LOGIN);
-			Response response = given().contentType("application/json").body(configMap.get("loginData"))
-					.post(configMap.get("host") + apiMap.get("api"));
+			Response response = RestAssuredMethods.httpRequest(API_LOGIN, configMap.get("loginData"));
 			return response.path("token");
 		} catch (Exception e) {
 			String failString = "获取用户token执行失败！！";
@@ -58,19 +55,25 @@ public class Config {
 			return failString;
 		}
 	}
-	//用户token写入excel
+
+	// 用户token写入excel
 	public static void initToken() {
 		try {
-			HandlerExcel.setDataToCell(EXCEL_PATH, EXCEL_NAME, EXCEL_API_SHEET, getToken());
+			HandlerExcel.setTokenToCell(EXCEL_PATH, EXCEL_NAME, EXCEL_API_SHEET, getToken());
+			String succString = "用户token写入excel成功！";
+			Log.info(succString);
 		} catch (Exception e) {
 			String failString = "用户token写入excel失败！";
 			Log.info(failString);
 		}
 	}
-	//清空用户token
+
+	// 清空用户token
 	public static void clearToken() {
 		try {
-			HandlerExcel.setDataToCell(EXCEL_PATH, EXCEL_NAME, EXCEL_API_SHEET, "");
+			HandlerExcel.setTokenToCell(EXCEL_PATH, EXCEL_NAME, EXCEL_API_SHEET, "");
+			String succString = "清空用户token成功！";
+			Log.info(succString);
 		} catch (Exception e) {
 			String failString = "清空用户token失败！";
 			Log.info(failString);
@@ -80,7 +83,8 @@ public class Config {
 	// 清空购物车
 	public static void clearCart() {
 		try {
-			RestAssuredMethods.deleteMethod(API_CLEAR_CART);
+			Response response = RestAssuredMethods.httpRequest(Config.API_CLEAR_CART);
+			Log.info("清空购物车成功：" + response.asString());
 		} catch (Exception e) {
 			String failString = "清空购物车失败！";
 			Log.info(failString);

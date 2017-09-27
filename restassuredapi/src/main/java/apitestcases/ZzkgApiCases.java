@@ -20,16 +20,16 @@ import org.testng.annotations.AfterMethod;
 public class ZzkgApiCases {
 
 	// 测试添加商品到购物车接口
-	@Test(enabled = true, dataProvider = "buyProcess", dataProviderClass = ApiTestDataPro.class)
+	@Test(enabled = true, dataProvider = "buyProcess", dataProviderClass = ApiTestDataPro.class, groups = { "P1" })
 	public void addGoodsToCart(String postData, String expectValue) throws IOException {
 		Log.startTestCase("addGoodsToCart用例测试开始！");
-		Response response = RestAssuredMethods.postMethod(postData, Config.API_BUY);
+		Response response = RestAssuredMethods.httpRequest(Config.API_BUY, postData);
 		response.then().body("msg", equalTo(expectValue));
 		Log.endTestCase("addGoodsToCart测试结束！");
 	}
 
-	//用例前提条件设置
-	@BeforeMethod
+	// 用例前提条件设置
+	@BeforeMethod(groups = { "init.env" })
 	public void beforeMethod() {
 		try {
 			Config.clearCart();
@@ -38,8 +38,9 @@ public class ZzkgApiCases {
 			Log.info("用例前提条件设置未完成！");
 		}
 	}
-	//用例后置条件设置
-	@AfterMethod
+
+	// 用例后置条件设置
+	@AfterMethod(groups = { "clear.env" })
 	public void afterMethod() {
 		try {
 			Config.clearCart();
@@ -48,8 +49,9 @@ public class ZzkgApiCases {
 			Log.info("用例后置条件设置未完成！");
 		}
 	}
-	//初始化环境
-	@BeforeClass
+
+	// 初始化环境
+	@BeforeClass(groups = { "init.env" })
 	public void beforeClass() {
 		DOMConfigurator.configure("log4j.xml");
 		Log.startTestCase("测试开始！");
@@ -61,13 +63,14 @@ public class ZzkgApiCases {
 			Log.info("初始化环境未完成！");
 		}
 	}
-	//清理环境
-	@AfterClass
+
+	// 清理环境
+	@AfterClass(groups = { "clear.env" })
 	public void afterClass() {
 		Log.endTestCase("测试结束！");
 		try {
 			Config.clearCart();
-			Config.clearToken();
+			// Config.clearToken();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.info("清理环境未完成！");

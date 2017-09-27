@@ -23,8 +23,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class HandlerExcel {
 
-	// 向表格单元格中写入数据
-	public static void setDataToCell(String excelPath, String excelName, String excelConfigSheet, String data) {
+	// 向表格单元格中写入token数据
+	public static void setTokenToCell(String excelPath, String excelName, String excelConfigSheet, String data) {
 		Log.info("=========================表格测试数据写入开始=========================");
 		File file = new File(excelPath + "\\" + excelName);
 		Log.info("测试数据表格：" + file.toString());
