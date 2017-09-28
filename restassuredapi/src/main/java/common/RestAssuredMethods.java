@@ -37,9 +37,16 @@ public class RestAssuredMethods {
 					.header("region", configMap.get("region")).get(configMap.get("host") + apiMap.get("api"));
 			break;
 		case "delete":
-			response = given().contentType("application/json").header("token", apiMap.get("token"))
-					.header("region", configMap.get("region"))
-					.delete(configMap.get("host") + apiMap.get("api") + postData[0]);
+			if (postData.length > 0) {
+				Log.info("http delete method with parameter");
+				response = given().contentType("application/json").header("token", apiMap.get("token"))
+						.header("region", configMap.get("region"))
+						.delete(configMap.get("host") + apiMap.get("api") + postData[0]);
+			} else {
+				Log.info("http delete method with no parameter");
+				response = given().contentType("application/json").header("token", apiMap.get("token"))
+						.header("region", configMap.get("region")).delete(configMap.get("host") + apiMap.get("api"));
+			}
 			break;
 		default:
 			Log.info("请求方法无法识别, 请求失败");

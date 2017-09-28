@@ -10,7 +10,7 @@
 				<include name="P2" />
 			</define>
 			<run>	
-				<include name="P1" />
+				<include name="P2" />
 				<include name="clear.env" />
 				<include name="init.env" />
 			</run>
