@@ -3,15 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="apitestcases.ZzkgApiCases">
+      <class name="restassuredapi.TryExtentreport">
         <methods>
-          <include name="addAddress" invocation-numbers="50"/>
           <include name="afterMethod"/>
-          <include name="afterClass"/>
-          <include name="beforeMethod"/>
-          <include name="beforeClass"/>
+          <include name="afterSuite"/>
+          <include name="intentionalFailure"/>
+          <include name="beforeSuite"/>
         </methods>
-      </class> <!-- apitestcases.ZzkgApiCases -->
+      </class> <!-- restassuredapi.TryExtentreport -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
