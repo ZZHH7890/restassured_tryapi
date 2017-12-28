@@ -13,7 +13,7 @@ public class GetDemo {
 	@Test
 	public void test() {
 		String apiUrl = "http://release.thy360.com/v2/address";
-		Response response = given().headers("region", "813395", "token", "f31279fd-bc89-43c6-ad79-367fa41f88da")
+		Response response = given().headers("region", "813395", "token", "98d6258a-3e23-4256-8cd6-a7a6375ee01c")
 				.get(apiUrl);
 		System.out.println(response.asString());
 		response.getBody().prettyPrint();

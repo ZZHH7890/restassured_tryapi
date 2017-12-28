@@ -1,4 +1,4 @@
-package restassuredapi;
+package extentreport;
 
 import com.relevantcodes.extentreports.ExtentReports;
 

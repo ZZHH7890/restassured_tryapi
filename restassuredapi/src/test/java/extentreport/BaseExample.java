@@ -1,4 +1,4 @@
-package restassuredapi;
+package extentreport;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;

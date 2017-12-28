@@ -20,7 +20,7 @@ import org.testng.annotations.AfterMethod;
 public class ZzkgApiCases {
 
 	// 测试添加商品到购物车接口
-	@Test(enabled = true, dataProvider = "buyProcess", dataProviderClass = ApiTestDataPro.class,groups = { "P2" })
+	@Test(enabled = false, dataProvider = "buyProcess", dataProviderClass = ApiTestDataPro.class,groups = { "P2" })
 	public void addGoodsToCart(String postData, String expectValue) throws IOException {
 		Log.startTestCase("addGoodsToCart用例测试开始！");
 		Response response = RestAssuredMethods.httpRequest(Config.API_BUY, postData);
@@ -36,6 +36,7 @@ public class ZzkgApiCases {
 		response.then().body("msg", equalTo(expectValue));
 		Log.endTestCase("addAddress测试结束！");
 	}
+	
 
 	// 用例前提条件设置
 	@BeforeMethod(groups = { "init.env" })

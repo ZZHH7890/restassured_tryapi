@@ -61,5 +61,4 @@ public class RestAssuredMethods {
 		Log.endTestCase("结束调用httpRequest");
 		return response;
 	}
-
 }
